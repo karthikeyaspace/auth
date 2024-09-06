@@ -5,16 +5,17 @@ import config from "../config";
 
 export interface UserTypes {
   id: string;
-  email: string;
   name: string;
+  email: string;
   hashpassword: string;
+  emailVerified: boolean;
   createdAt: string;
   lastLogin: string;
-  emailVerified: boolean;
 }
 
+
 const login = async (email: string, password: string) => {
-  const user: UserTypes | undefined = db.findUserByEmail(email).user;
+  const user = await db.findUserByEmail(email);
   if (!user) return { status: false, message: "User not found" };
 
   let status = await bcrypt.compare(password, user.hashpassword);
@@ -28,7 +29,7 @@ const login = async (email: string, password: string) => {
 };
 
 const register = async (email: string, password: string, name: string) => {
-  const user = db.findUserByEmail(email).user;
+  const user = await db.findUserByEmail(email);
   if (user) return { status: false, message: "User already exists" };
 
   const hashpassword = await bcrypt.hash(password, 10);
@@ -52,18 +53,18 @@ const register = async (email: string, password: string, name: string) => {
 };
 
 const verify = async (email: string) => {
-  const user = db.verifyUser(email).user;
+  const user = await db.verifyUser(email);
   if (!user) return { status: false, message: "User not found" };
 
   return { status: true, message: "User verified", user };
 };
 
-const update = async (id: string, email: string, name: string) => {
-  const user = db.findUserByEmail(email).user;
+const update = async (email: string, name: string) => {
+  const user = await db.findUserByEmail(email);
   if (!user) return { status: false, message: "User not found" };
 
   const newUser: UserTypes = {
-    id,
+    id: user.id,
     email,
     name,
     hashpassword: user.hashpassword,
@@ -72,18 +73,17 @@ const update = async (id: string, email: string, name: string) => {
     emailVerified: user.emailVerified,
   };
 
-  db.updateUser(id, newUser);
+  db.updateUser(user.id, newUser);
 
   return { status: true, message: "User updated", user: newUser };
 };
 
 const removeUser = async (id: string) => {
-  const user = db.findUserByEmail(id).user;
+  const user = await db.findUserByEmail(id);
   if (!user) return { status: false, message: "User not found" };
-
   db.deleteUser(id);
-
   return { status: true, message: "User deleted" };
 };
+
 
 export { login, register, verify, update, removeUser };

@@ -1,4 +1,6 @@
 const config: {[key: string]: string} = {
+    BASE_URL: "http://localhost:3000",
+    // import these variables from .env file
     FIREBASE_API_KEY: "API_KEY",
     FIREBASE_AUTH_DOMAIN: "AUTH_DOMAIN",
     FIREBASE_DATABASE_URL: "DATABASE_URL",
@@ -12,7 +14,12 @@ const config: {[key: string]: string} = {
     SUPABASE_URL: "SUPABASE_URL",
     SUPABASE_REDIRECT_URL: "SUPABASE_REDIRECT_URL",
 
-    JWT_SECRET: "ultrasecretkey"
+    JWT_SECRET: "ultrasecretkey",
+
+    FROM_MAIL: "karthikeyaveruturi2004@gmail.com",
+    MAIL_PASSWORD: "mrfnlpzjzsopnvnx",
+    MAIL_SERVICE: "gmail",
+
 
 }
 

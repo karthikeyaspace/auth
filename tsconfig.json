@@ -1,9 +1,8 @@
 {
-  "include": ["./*", "vite.config.ts"],
+  "include": ["./*"],
   "compilerOptions": {
-    "jsx": "react",
     "target": "ES6",
-    "module": "ESNext",
+    "module": "CommonJS",
     "moduleResolution": "node",
     "lib": ["es2018", "dom"],
     "outDir": "./build/",
@@ -12,5 +11,6 @@
     "removeComments": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true
-  }
+  },
+  "exclude": ["node_modules"]
 }
