@@ -5,6 +5,8 @@ import * as mgl from "./magiclink/index";
 app.use(express.json());
 const PORT = 3000;
 
+// demo testing server
+
 // jwt tests
 
 app.post("/jwt/login", async (req, res) => {
