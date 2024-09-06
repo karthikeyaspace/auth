@@ -16,11 +16,9 @@ const config: {[key: string]: string} = {
 
     JWT_SECRET: "ultrasecretkey",
 
-    FROM_MAIL: "karthikeyaveruturi2004@gmail.com",
-    MAIL_PASSWORD: "mrfnlpzjzsopnvnx",
+    FROM_MAIL: "your mail",
+    MAIL_PASSWORD: "mail password -> google app password",
     MAIL_SERVICE: "gmail",
-
-
 }
 
 export default config;

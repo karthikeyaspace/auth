@@ -41,7 +41,7 @@ app.post("/mgl/login", async (req, res) => {
   return res.send({ status: result.status, message: result.message, user: result.user });
 });
 
-app.get('/mgl/verify/:token', async (req, res) => {
+app.get('/mgl/validate/:token', async (req, res) => {
   const { token } = req.params;
   const result = await mgl.validateToken(token);
   if(!result)
